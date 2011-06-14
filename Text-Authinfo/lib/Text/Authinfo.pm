@@ -1,20 +1,20 @@
 package Text::Authinfo;
 
-use v5.12;
 use strict;
 use warnings;
 use File::Copy qw(move);
-use Data::Dumper;
 use Text::CSV;
 use Carp qw(croak carp);
 use vars qw($VERSION @EXPORT);
 use Exporter;
 use base qw(Exporter);
 
+
 @EXPORT = qw(readauthinfo writeauthinfo as_string);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 our $authinfofile = $ENV{'HOME'} . '/.authinfo';
+
 
 sub new {
     my $self = {};
@@ -67,10 +67,8 @@ sub as_string {
         for my $port (keys %{$self->{AUTHINFO}->{$machine}}) {
             for my $login (keys %{$self->{AUTHINFO}->{$machine}->{$port}}) {
                 my $pass = $self->{AUTHINFO}->{$machine}->{$port}->{$login};
-                $c .= 'machine ' . $machine .
-                    ' login ' . $login .
-                        ' password ' . $pass .
-                            ' port ' . $port . "\n";
+                $c .= 'machine ' . $machine . ' login ' . $login .
+                    ' password ' . $pass . ' port ' . $port . "\n";
             }
         }
     }

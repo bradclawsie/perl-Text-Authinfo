@@ -13,7 +13,8 @@ WriteMakefile(
       : ()),
     PL_FILES            => {},
     PREREQ_PM => {
-        'Test::More' => 0,
+                  'Test::More' => 0,
+                  'Text::CSV' => 1.21,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Text-Authinfo-*' },
